@@ -37,7 +37,7 @@ const albertaData = {
 } as any;
 const saskatchewanData = {
   province: "Saskatchewan",
-  facilities: [] as any[],
+  facilities: loadCanadaProvinceFacilities("saskatchewan_facilities.json"),
 } as any;
 const manitobaData = { province: "Manitoba", facilities: [] as any[] } as any;
 const ontarioData = {
@@ -54,14 +54,24 @@ const newBrunswickData = {
 } as any;
 const princeEdwardIslandData = {
   province: "Prince Edward Island",
-  facilities: [] as any[],
+  facilities: loadCanadaProvinceFacilities(
+    "prince-edward-island_facilities.json",
+  ),
 } as any;
 const northwestTerritoriesData = {
   province: "Northwest Territories",
-  facilities: [] as any[],
+  facilities: loadCanadaProvinceFacilities(
+    "northwest-territories_facilities.json",
+  ),
 } as any;
-const yukonData = { province: "Yukon", facilities: [] as any[] } as any;
-const nunavutData = { province: "Nunavut", facilities: [] as any[] } as any;
+const yukonData = {
+  province: "Yukon",
+  facilities: loadCanadaProvinceFacilities("yukon_facilities.json"),
+} as any;
+const nunavutData = {
+  province: "Nunavut",
+  facilities: loadCanadaProvinceFacilities("nunavut_facilities.json"),
+} as any;
 const newfoundlandAndLabradorData = {
   province: "Newfoundland and Labrador",
   facilities: loadCanadaProvinceFacilities(
@@ -69,7 +79,7 @@ const newfoundlandAndLabradorData = {
   ),
 } as any;
 // Quebec data is treated as a raw array in this template.
-const quebecData = [] as any[];
+const quebecData = loadCanadaProvinceFacilities("quebec_facilities.json");
 
 type CanadaFacilityRaw = {
   name: string;

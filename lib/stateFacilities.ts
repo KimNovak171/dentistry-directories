@@ -743,7 +743,13 @@ function normalizeStateFacilitiesJson(
   | null {
   // Newer data files are stored as a top-level array of facilities.
   if (Array.isArray(parsed)) {
-    const facilities = parsed as AlternateFormatFacilityRaw[];
+    const facilitiesAll = parsed as AlternateFormatFacilityRaw[];
+    // Canada province/territory files include a `country: "Canada"` field.
+    // Skip them so they don't appear as US "state" directories.
+    const facilities = facilitiesAll.filter(
+      (f: any) => (f?.country ?? "").toLowerCase() !== "canada",
+    );
+    if (facilities.length === 0) return null;
     const stateName =
       (facilities[0]?.state ?? "").trim() || fallbackStateNameFromSlug(stateSlug);
     return { stateName, facilities };
@@ -755,9 +761,13 @@ function normalizeStateFacilitiesJson(
       state?: unknown;
     };
 
-    const facilities = Array.isArray(obj.facilities)
+    const facilitiesAll = Array.isArray(obj.facilities)
       ? (obj.facilities as AlternateFormatFacilityRaw[])
       : [];
+    const facilities = facilitiesAll.filter(
+      (f: any) => (f?.country ?? "").toLowerCase() !== "canada",
+    );
+    if (facilities.length === 0) return null;
 
     const stateFromObject =
       typeof obj.state === "string" ? obj.state.trim() : undefined;
