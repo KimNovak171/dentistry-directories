@@ -30,8 +30,8 @@ export const metadata: Metadata = {
 };
 
 const siteUrl = "https://pediatriciandirectories.com";
-const STRIPE_LINK_49 = "https://buy.stripe.com/6oU9AT1rQ7DF5NYdXPfAc0c";
-const STRIPE_LINK_99 = "https://buy.stripe.com/3cI9ATfiGe2390a06ZfAc0d";
+const STRIPE_LINK_49 = "https://buy.stripe.com/dRm6oH2vU0bdccm9HzfAc0e";
+const STRIPE_LINK_99 = "https://buy.stripe.com/14AcN59YmbTV4JU1b3fAc0f";
 
 export default function AdvertisePage() {
   const breadcrumbSchema = {
