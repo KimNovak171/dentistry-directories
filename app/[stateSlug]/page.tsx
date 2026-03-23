@@ -27,7 +27,7 @@ export async function generateMetadata({
 
   const title = `Family Doctor Practices in ${stateName} | ${totalFacilities.toLocaleString()} Verified Practices | FamilyDoctorDirectories.com`;
 
-  const descriptor = `Browse ${totalFacilities.toLocaleString()} verified family-doctor practices across ${cities.length.toLocaleString()} ${stateName} cities. fine motor skills, sensory processing, daily living activities, and more — all rated 3 stars or higher.`;
+  const descriptor = `Browse ${totalFacilities.toLocaleString()} verified family-doctor practices across ${cities.length.toLocaleString()} ${stateName} cities. Find family doctors, general practitioners, and primary care physicians — all rated 3 stars or higher on Google Maps.`;
 
   return {
     title,
@@ -73,7 +73,8 @@ export default async function StatePage({ params }: StatePageProps) {
     careTypes,
   } = await getStateSummary(stateSlug ?? "");
   const resourcesUrl = getStateResourcesUrl(resolvedStateSlug);
-  const careTypesText = (["functional assessment", "daily living skills", "sensory integration", "cognitive rehabilitation"] as const).join(", ");
+  const familyMedicineFocusText =
+    "family medicine, primary care, preventive care, and general practice";
   const majorCities = [...cities]
     .sort((a, b) => b.facilityCount - a.facilityCount)
     .slice(0, 6)
@@ -85,7 +86,7 @@ export default async function StatePage({ params }: StatePageProps) {
   const careTypesSentence =
     topCareTypes.length > 0
       ? topCareTypes.join(", ")
-      : "fine motor skills, daily living skills, sensory integration, and cognitive rehabilitation";
+      : "family medicine, primary care, preventive care, and chronic disease management";
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -154,19 +155,19 @@ export default async function StatePage({ params }: StatePageProps) {
       },
       {
         "@type": "Thing",
-        name: "Functional assessment",
+        name: "Family medicine",
       },
       {
         "@type": "Thing",
-        name: "Daily living skills",
+        name: "Primary care",
       },
       {
         "@type": "Thing",
-        name: "Sensory integration",
+        name: "General practice",
       },
       {
         "@type": "Thing",
-        name: "Cognitive rehabilitation",
+        name: "Preventive care",
       },
     ],
     speakable: {
@@ -212,9 +213,10 @@ export default async function StatePage({ params }: StatePageProps) {
           Family Doctor Practices in {stateName}
         </h1>
         <p className="mt-3 max-w-2xl text-sm text-foreground/80">
-          Explore {careTypesText} across {stateName}, including major city
-          areas such as {majorCitiesText}. Use this page to compare options by
-          city, then review{" "}
+          Explore {familyMedicineFocusText} across {stateName}, including major
+          city areas such as {majorCitiesText}. Use this page to find family
+          doctors, general practitioners, and primary care physicians by city,
+          then review{" "}
           <a
             href={resourcesUrl}
             target="_blank"
@@ -286,9 +288,9 @@ export default async function StatePage({ params }: StatePageProps) {
               Family Doctor Practices by City in {stateName}
             </h2>
             <p className="mt-1 max-w-2xl text-sm text-slate-600">
-              Choose a city to view all listed family-doctor practices, including
-              common services like functional assessment, daily living skills, and sensory
-              integration.
+              Choose a city to browse family doctors, general practitioners, and
+              primary care practices in {stateName}, including routine visits,
+              preventive care, and chronic disease management.
             </p>
           </div>
           <div className="text-xs text-slate-500">

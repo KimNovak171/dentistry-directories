@@ -149,19 +149,19 @@ export default async function CityPage({ params }: CityPageProps) {
       },
       {
         "@type": "Thing",
-        name: "Functional assessment",
+        name: "Family medicine",
       },
       {
         "@type": "Thing",
-        name: "Daily living skills",
+        name: "Primary care",
       },
       {
         "@type": "Thing",
-        name: "Sensory integration",
+        name: "General practice",
       },
       {
         "@type": "Thing",
-        name: "Cognitive rehabilitation",
+        name: "Preventive care",
       },
     ],
     speakable: {

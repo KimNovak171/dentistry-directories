@@ -67,14 +67,8 @@ export default async function ProvincePage({ params }: ProvincePageProps) {
     careTypes,
   } = await getProvinceSummary(provinceSlug ?? "");
 
-  const careTypesText = (
-    [
-      "functional assessment",
-      "daily living skills",
-      "sensory integration",
-      "cognitive rehabilitation",
-    ] as const
-  ).join(", ");
+  const familyMedicineFocusText =
+    "family medicine, primary care, preventive care, and general practice";
   const majorCities = [...cities]
     .sort((a, b) => b.facilityCount - a.facilityCount)
     .slice(0, 6)
@@ -86,7 +80,7 @@ export default async function ProvincePage({ params }: ProvincePageProps) {
   const careTypesSentence =
     topCareTypes.length > 0
       ? topCareTypes.join(", ")
-      : "fine motor skills, daily living skills, sensory integration, and cognitive rehabilitation";
+      : "family medicine, primary care, preventive care, and chronic disease management";
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -156,10 +150,10 @@ export default async function ProvincePage({ params }: ProvincePageProps) {
     },
     about: [
       { "@type": "Thing", name: `${provinceName} family-doctor practices` },
-      { "@type": "Thing", name: "Functional assessment" },
-      { "@type": "Thing", name: "Daily living skills" },
-      { "@type": "Thing", name: "Sensory integration" },
-      { "@type": "Thing", name: "Cognitive rehabilitation" },
+      { "@type": "Thing", name: "Family medicine" },
+      { "@type": "Thing", name: "Primary care" },
+      { "@type": "Thing", name: "General practice" },
+      { "@type": "Thing", name: "Preventive care" },
     ],
     speakable: {
       "@type": "SpeakableSpecification",
@@ -204,8 +198,9 @@ export default async function ProvincePage({ params }: ProvincePageProps) {
           Family Doctor Practices in {provinceName}, Canada
         </h1>
         <p className="mt-3 max-w-2xl text-sm text-foreground/80">
-          Explore {careTypesText} across {provinceName}, including major city
-          areas such as {majorCitiesText}. Use this page to compare options by
+          Explore {familyMedicineFocusText} across {provinceName}, including
+          major city areas such as {majorCitiesText}. Use this page to find
+          family doctors, general practitioners, and primary care physicians by
           city.
         </p>
 
@@ -270,9 +265,9 @@ export default async function ProvincePage({ params }: ProvincePageProps) {
               Family Doctor Practices by City in {provinceName}
             </h2>
             <p className="mt-1 max-w-2xl text-sm text-slate-600">
-              Choose a city to view all listed family-doctor practices, including
-              common services like functional assessment, daily living skills, and sensory
-              integration.
+              Choose a city to browse family doctors, general practitioners, and
+              primary care practices in {provinceName}, including routine visits,
+              preventive care, and chronic disease management.
             </p>
           </div>
           <div className="text-xs text-slate-500">

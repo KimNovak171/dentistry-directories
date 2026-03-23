@@ -140,9 +140,10 @@ export default async function CanadaCityPage({ params }: CanadaCityPageProps) {
     about: [
       { "@type": "Thing", name: `${cityName} family-doctor practices` },
       { "@type": "Thing", name: `${provinceName} family-doctor services` },
-      { "@type": "Thing", name: "Functional assessment" },
-      { "@type": "Thing", name: "Daily living skills" },
-      { "@type": "Thing", name: "Sensory integration" },
+      { "@type": "Thing", name: "Family medicine" },
+      { "@type": "Thing", name: "Primary care" },
+      { "@type": "Thing", name: "General practice" },
+      { "@type": "Thing", name: "Preventive care" },
     ],
     speakable: {
       "@type": "SpeakableSpecification",

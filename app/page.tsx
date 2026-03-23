@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title:
     "Family Doctor Directory USA & Canada | Verified family-doctors",
   description:
-    "Browse verified family-doctors across the US and Canada. Fine motor skills, sensory processing, daily living activities and more — all rated 3 stars or higher on Google Maps.",
+    "Browse verified family-doctors across the US and Canada. Find family doctors, general practitioners, and primary care physicians — all rated 3 stars or higher on Google Maps.",
   alternates: {
     canonical: "/",
   },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title:
       "Family Doctor Directory USA & Canada | Verified family-doctors",
     description:
-      "Browse verified family-doctors across the US and Canada. fine motor skills, sensory processing, daily living activities, and more — all rated 3 stars or higher on Google Maps.",
+      "Browse verified family-doctors across the US and Canada. Find family doctors, general practitioners, and primary care physicians — all rated 3 stars or higher on Google Maps.",
     url: "/",
     siteName: "familydoctordirectories.com",
     type: "website",
