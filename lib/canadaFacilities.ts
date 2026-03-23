@@ -4,7 +4,10 @@ import path from "path";
 
 /**
  * All provinces & territories that may have `data/{slug}_facilities.json`.
- * Loaded in batch via discover + readFileSync (try/catch → [] per file).
+ * `discoverCanadaProvinceSlugsFromData()` finds which of these files exist and
+ * loads each in one batch (`readFileSync` + try/catch → [] per file).
+ * Maps links: when `place_id` is set, use `/maps/place/?q=place_id:{encoded_id}`;
+ * otherwise `maps/search/?api=1&query={encoded_address}`.
  */
 const ALL_CANADA_PROVINCE_SLUGS = [
   "alberta",
@@ -180,8 +183,9 @@ function transformCanadaFacilities(
       addressParts.length > 1 ? addressParts.slice(1).join(", ") : undefined;
     const fullAddress = (f.address ?? "").trim();
     const pid = f.place_id?.trim();
+    /** Canadian exports: use place_id when present; otherwise address search. */
     const mapsUrl = pid
-      ? `https://www.google.com/maps/place/?q=${encodeURIComponent(`place_id:${pid}`)}`
+      ? `https://www.google.com/maps/place/?q=place_id:${encodeURIComponent(pid)}`
       : fullAddress
         ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}`
         : undefined;
