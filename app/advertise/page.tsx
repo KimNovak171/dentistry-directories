@@ -30,8 +30,8 @@ export const metadata: Metadata = {
 };
 
 const siteUrl = "https://familydoctordirectories.com";
-const STRIPE_LINK_49 = "https://buy.stripe.com/dRm6oH2vU0bdccm9HzfAc0e";
-const STRIPE_LINK_99 = "https://buy.stripe.com/14AcN59YmbTV4JU1b3fAc0f";
+const STRIPE_LINK_49 = "https://buy.stripe.com/00weVd8UicXZgsCaLDfAc0g";
+const STRIPE_LINK_99 = "https://buy.stripe.com/4gM5kD8Ui1fh3FQ1b3fAc0h";
 
 export default function AdvertisePage() {
   const breadcrumbSchema = {
