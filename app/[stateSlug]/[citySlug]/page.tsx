@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FacilityCard } from "@/components/FacilityCard";
+import { formatCareTypesClause } from "@/lib/careTypesProse";
 import {
   getCityFacilities,
   getDirectoryIndex,
@@ -28,7 +29,7 @@ export async function generateMetadata({
     await getCityFacilities(safeState, safeCity);
   const count = Array.isArray(cityFacilities) ? cityFacilities.length : 0;
   const title = `Dental Practices in ${cityName}, ${stateName} | Dentistry Directories`;
-  const description = `Find ${count.toLocaleString()} dental practices in ${cityName}, ${stateName}. Compare services and practice details. Verified listings with ratings and reviews.`;
+  const description = `Find trusted dental care in ${cityName}, ${stateName}—browse ${count.toLocaleString()} verified practices with contact details, maps, and Google ratings so you can choose with confidence.`;
 
   return {
     title,
@@ -98,10 +99,7 @@ export default async function CityPage({ params }: CityPageProps) {
         .filter(Boolean),
     ),
   );
-  const careTypesText =
-    careTypes.length > 0
-      ? careTypes.slice(0, 4).join(", ")
-      : "dental services";
+  const careTypesClause = formatCareTypesClause(careTypes);
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -188,15 +186,14 @@ export default async function CityPage({ params }: CityPageProps) {
           Dental Practices in {cityName}, {stateName}
         </h1>
         <p className="max-w-2xl text-sm text-slate-600">
-          {cityName} has {facilities.length.toLocaleString()} verified
-          dental practices including {careTypesText}. Browse all options
-          below, each with Google Maps profile links and ratings data where
-          available.
+          {cityName} has {facilities.length.toLocaleString()} verified dental
+          practices {careTypesClause}. Browse all options below, each with
+          Google Maps profile links and ratings data where available.
         </p>
         <p className="max-w-2xl text-sm text-slate-600">
-          Compare practices side by side, review services and contact
-          details, and share this page with patients and families as you plan
-          next steps in {stateName}.
+          Compare practices side by side, review services and contact details,
+          and find the right dental practice for you and your family in{" "}
+          {stateName}.
         </p>
       </header>
 
@@ -252,7 +249,7 @@ export default async function CityPage({ params }: CityPageProps) {
             Other cities in {stateName}
           </h2>
           <p className="text-sm text-slate-600">
-            Continue exploring nearby city directories within {stateName}.
+            See nearby cities in {stateName}.
           </p>
           <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
             {otherCities.map((city) => (
