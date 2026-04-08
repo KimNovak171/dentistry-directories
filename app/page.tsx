@@ -81,7 +81,48 @@ export default async function Home() {
               on Google Maps.
             </p>
           </div>
+        </div>
+      </section>
 
+      <section className="border-y-2 border-teal/30 bg-surface">
+        <div className="mx-auto grid max-w-6xl gap-4 px-4 py-8 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
+          <div className="rounded-xl border-2 border-teal/30 bg-surface p-4 text-center shadow-sm">
+            <p className="text-xs font-semibold uppercase tracking-wide text-teal">
+              Verified dentists
+            </p>
+            <p className="mt-2 text-2xl font-semibold text-foreground">
+              {globalStats.totalFacilities.toLocaleString()}
+            </p>
+          </div>
+          <div className="rounded-xl border-2 border-teal/30 bg-surface p-4 text-center shadow-sm">
+            <p className="text-xs font-semibold uppercase tracking-wide text-teal">
+              Cities Covered
+            </p>
+            <p className="mt-2 text-2xl font-semibold text-foreground">
+              {globalStats.totalCities.toLocaleString()}
+            </p>
+          </div>
+          <div className="rounded-xl border-2 border-teal/30 bg-surface p-4 text-center shadow-sm">
+            <p className="text-xs font-semibold uppercase tracking-wide text-teal">
+              Average Rating
+            </p>
+            <p className="mt-2 text-2xl font-semibold text-foreground">
+              {globalStats.averageRating != null
+                ? `${globalStats.averageRating}★`
+                : "—"}
+            </p>
+          </div>
+          <div className="rounded-xl border-2 border-teal/30 bg-surface p-4 text-center shadow-sm">
+            <p className="text-xs font-semibold uppercase tracking-wide text-teal">
+              Quality Standard
+            </p>
+            <p className="mt-2 text-2xl font-semibold text-foreground">3★ Minimum</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-surface">
+        <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-10 sm:px-6 lg:py-16 lg:px-8">
           <div className="w-full rounded-2xl border-2 border-teal/40 bg-surface p-6 shadow-xl shadow-navy/20 ring-1 ring-teal/30">
             <h2 className="text-xl font-semibold text-foreground">
               Start with a state directory
@@ -184,43 +225,6 @@ export default async function Home() {
         </a>
         .
       </p>
-
-      <section className="mt-8 border-y-2 border-teal/30 bg-surface">
-        <div className="mx-auto grid max-w-6xl gap-4 px-4 py-8 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
-          <div className="rounded-xl border-2 border-teal/30 bg-surface p-4 text-center shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-wide text-teal">
-              Verified dentists
-            </p>
-            <p className="mt-2 text-2xl font-semibold text-foreground">
-              {globalStats.totalFacilities.toLocaleString()}
-            </p>
-          </div>
-          <div className="rounded-xl border-2 border-teal/30 bg-surface p-4 text-center shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-wide text-teal">
-              Cities Covered
-            </p>
-            <p className="mt-2 text-2xl font-semibold text-foreground">
-              {globalStats.totalCities.toLocaleString()}
-            </p>
-          </div>
-          <div className="rounded-xl border-2 border-teal/30 bg-surface p-4 text-center shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-wide text-teal">
-              Average Rating
-            </p>
-            <p className="mt-2 text-2xl font-semibold text-foreground">
-              {globalStats.averageRating != null
-                ? `${globalStats.averageRating}★`
-                : "—"}
-            </p>
-          </div>
-          <div className="rounded-xl border-2 border-teal/30 bg-surface p-4 text-center shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-wide text-teal">
-              Quality Standard
-            </p>
-            <p className="mt-2 text-2xl font-semibold text-foreground">3★ Minimum</p>
-          </div>
-        </div>
-      </section>
 
       <section className="bg-surface">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
