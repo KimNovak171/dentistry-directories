@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   staticPageGenerationTimeout: 300,
   /** Use `NEXT_DIST_DIR` when `.next` is locked (e.g. Dropbox on Windows). */
   distDir: process.env.NEXT_DIST_DIR || ".next",
+  output: "export",
+  images: { unoptimized: true },
+  experimental: { cpus: 1 },
 };
 
 export default nextConfig;
