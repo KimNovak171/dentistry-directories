@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
-import { getCanadaDirectoryIndex } from "@/lib/canadaFacilities";
-import { getDirectoryIndex } from "@/lib/stateFacilities";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -44,16 +42,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [directory, canadaDirectory] = await Promise.all([
-    getDirectoryIndex(),
-    getCanadaDirectoryIndex(),
-  ]);
-
   return (
     <html lang="en">
       <head>
@@ -127,76 +120,6 @@ export default async function RootLayout({
 
           <main className="flex-1">{children}</main>
 
-          <section
-            className="w-full border-t-[3px] border-teal bg-surface px-4 py-5 text-foreground/80 sm:px-6 lg:px-8"
-            aria-label="Full state and city directory"
-          >
-            <div className="mx-auto flex max-w-6xl flex-col gap-4">
-              <h2 className="text-sm font-semibold text-foreground">
-                Full State and City Directory
-              </h2>
-              <p className="text-[11px] text-foreground/70">
-                Crawlable internal links to every state and city page.
-              </p>
-              <div className="flex flex-col gap-5">
-                {directory.map((state) => (
-                  <div key={state.stateSlug} className="space-y-2">
-                    <Link
-                      href={`/${state.stateSlug}`}
-                      className="text-sm font-semibold text-teal hover:text-teal-soft"
-                    >
-                      {state.stateName}
-                    </Link>
-                    <div className="flex flex-wrap gap-x-3 gap-y-1">
-                      {state.cities.map((city) => (
-                        <Link
-                          key={`${state.stateSlug}-${city.citySlug}`}
-                          href={`/${state.stateSlug}/${city.citySlug}`}
-                          className="text-[11px] text-foreground/85 hover:text-teal"
-                        >
-                          {city.cityName}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-                {canadaDirectory.length > 0 && (
-                  <>
-                    <div className="space-y-2 border-t border-teal/10 pt-5">
-                      <Link
-                        href="/canada"
-                        className="text-sm font-semibold text-teal hover:text-teal-soft"
-                      >
-                        Canada
-                      </Link>
-                    </div>
-                    {canadaDirectory.map((province) => (
-                      <div key={province.provinceSlug} className="space-y-2">
-                        <Link
-                          href={`/canada/${province.provinceSlug}`}
-                          className="text-sm font-semibold text-teal hover:text-teal-soft"
-                        >
-                          {province.provinceName}
-                        </Link>
-                        <div className="flex flex-wrap gap-x-3 gap-y-1">
-                          {province.cities.map((city) => (
-                            <Link
-                              key={`${province.provinceSlug}-${city.citySlug}`}
-                              href={`/canada/${province.provinceSlug}/${city.citySlug}`}
-                              className="text-[11px] text-foreground/85 hover:text-teal"
-                            >
-                              {city.cityName}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </>
-                )}
-              </div>
-            </div>
-          </section>
-
           <footer className="w-full border-t border-teal/10 bg-surface">
             <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-5 text-xs text-foreground/80 sm:px-6 lg:px-8">
               <p>
@@ -210,6 +133,9 @@ export default async function RootLayout({
                 </Link>
                 <Link href="/contact" className="hover:text-teal-soft">
                   Contact
+                </Link>
+                <Link href="/directory" className="hover:text-teal-soft">
+                  Full Directory
                 </Link>
                 <Link href="/privacy" className="hover:text-teal-soft">
                   Privacy &amp; terms
