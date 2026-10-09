@@ -12,6 +12,7 @@ export type Facility = {
   city?: string;
   featured?: boolean;
   premium?: boolean;
+  claimed?: boolean;
   recommended?: boolean;
   logo?: string;
   tagline?: string;
@@ -136,6 +137,7 @@ export function FacilityCard({ facility }: FacilityCardProps) {
     city,
     featured,
     premium,
+    claimed,
     recommended,
     logo,
     tagline,
@@ -145,11 +147,16 @@ export function FacilityCard({ facility }: FacilityCardProps) {
   const isRecommended = recommended === true;
   const showReviewCarefully = recommended === false;
   const isPremium = premium === true;
+  const isClaimed = claimed === true;
   const taglineDisplay =
     isPremium && tagline && tagline.trim()
       ? truncateToWords(tagline.trim(), 60)
       : "";
   const hasLogo = isPremium && logo && logo.trim().length > 0;
+  const claimParams = new URLSearchParams({ business: name });
+  const claimLocation = [city, state].filter(Boolean).join(", ");
+  if (claimLocation) claimParams.set("location", claimLocation);
+  const claimHref = `/claim?${claimParams.toString()}#listing-request`;
 
   const mapsHref = resolveGoogleMapsHref(mapsUrl, addressLines);
 
@@ -206,7 +213,11 @@ export function FacilityCard({ facility }: FacilityCardProps) {
           ⭐ Featured
         </span>
       )}
-      {hasLogo && (
+      {isClaimed && !isFeatured && !isPremium && (
+        <span className="absolute right-4 top-4 rounded-full border border-teal bg-white px-2.5 py-0.5 text-xs font-semibold text-teal" aria-label="Verified listing">
+          Verified
+        </span>
+      )}      {hasLogo && (
         <div className="flex justify-start">
           <img
             src={logo!.trim()}
@@ -215,7 +226,7 @@ export function FacilityCard({ facility }: FacilityCardProps) {
           />
         </div>
       )}
-      <div className={`flex flex-wrap items-start justify-between gap-2 ${isPremium ? "pr-16" : isFeatured ? "pr-20" : ""}`}>
+      <div className={`flex flex-wrap items-start justify-between gap-2 ${isPremium ? "pr-16" : isFeatured ? "pr-20" : isClaimed ? "pr-20" : ""}`}>
         <h3 className="text-xl font-semibold leading-snug text-navy">
           {name}
         </h3>
@@ -286,6 +297,20 @@ export function FacilityCard({ facility }: FacilityCardProps) {
         )}
       </div>
 
+      {!isClaimed && (
+        <div className="mt-auto border-t border-slate-200 pt-3">
+          <a
+            href={claimHref}
+            className="inline-flex w-full items-center justify-center rounded-full border border-teal bg-white px-4 py-2 text-sm font-semibold text-teal transition hover:bg-teal hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2"
+            aria-label={`Verify the listing for ${name} for a one-time $19 fee`}
+          >
+            Own this dental practice? Verify listing — $19
+          </a>
+          <p className="mt-1.5 text-center text-xs text-slate-500">
+            One-time fee. No subscription or renewal.
+          </p>
+        </div>
+      )}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

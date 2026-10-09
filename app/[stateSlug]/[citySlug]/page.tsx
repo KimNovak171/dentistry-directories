@@ -79,8 +79,8 @@ export default async function CityPage({ params }: CityPageProps) {
     citiesCount,
   } = await getCityFacilities(stateSlug ?? "", citySlug ?? "");
   const facilities = [...facilitiesRaw].sort((a, b) => {
-    const score = (f: { featured?: boolean; premium?: boolean }) =>
-      f.premium === true ? 2 : f.featured === true ? 1 : 0;
+    const score = (f: { featured?: boolean; premium?: boolean; claimed?: boolean }) =>
+      f.premium === true ? 3 : f.featured === true ? 2 : f.claimed === true ? 1 : 0;
     return score(b) - score(a);
   });
   const otherCities = await getOtherCitiesInState(
