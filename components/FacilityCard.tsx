@@ -297,20 +297,6 @@ export function FacilityCard({ facility }: FacilityCardProps) {
         )}
       </div>
 
-      {!isClaimed && (
-        <div className="mt-auto border-t border-slate-200 pt-3">
-          <a
-            href={claimHref}
-            className="inline-flex w-full items-center justify-center rounded-full border border-teal bg-white px-4 py-2 text-sm font-semibold text-teal transition hover:bg-teal hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2"
-            aria-label={`Verify the listing for ${name} for a one-time $19 fee`}
-          >
-            Own this dental practice? Verify listing — $19
-          </a>
-          <p className="mt-1.5 text-center text-xs text-slate-500">
-            One-time fee. No subscription or renewal.
-          </p>
-        </div>
-      )}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
