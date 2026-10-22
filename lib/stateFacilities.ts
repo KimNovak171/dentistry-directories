@@ -290,6 +290,7 @@ function toFacilityRecord(raw: RawFacility): FacilityRecord {
     reviewCount: raw.reviewCount ?? undefined,
     featured: raw.featured ?? undefined,
     premium: raw.premium ?? undefined,
+    claimed: raw.claimed ?? undefined,
     recommended: raw.recommended ?? undefined,
     logo: raw.logo ?? undefined,
     tagline: raw.tagline ?? undefined,
